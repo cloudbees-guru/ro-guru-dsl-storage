@@ -1,0 +1,1 @@
+mv "$[/myJob/artifactData/fullRetrievedLocation]" /tmp/spring-petclinic.war
