@@ -1,4 +1,0 @@
-
-acl {
-  inheriting = '1'
-}

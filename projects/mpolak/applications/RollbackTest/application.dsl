@@ -1,4 +1,0 @@
-
-application 'RollbackTest', {
-  projectName = 'mpolak'
-}
