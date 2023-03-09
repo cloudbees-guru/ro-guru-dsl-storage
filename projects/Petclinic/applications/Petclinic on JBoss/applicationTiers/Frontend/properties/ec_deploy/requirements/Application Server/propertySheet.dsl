@@ -1,2 +1,0 @@
-
-property 'Application Server'

@@ -1,4 +1,0 @@
-
-snapshot 'stable', {
-  description = ''
-}

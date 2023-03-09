@@ -1,2 +1,0 @@
-sed -i s/" petclinic"/" petclinic_$[/myJob/launchedByUser]_$[/myEnvironment/shortcut]"/g BOOT-INF/classes/db/mysql/user.sql
-sed -i s/" IDENTIFIED BY 'petclinic'"/""/g BOOT-INF/classes/db/mysql/user.sql

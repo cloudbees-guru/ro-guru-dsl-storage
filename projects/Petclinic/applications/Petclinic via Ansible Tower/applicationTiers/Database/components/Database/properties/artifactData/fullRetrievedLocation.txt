@@ -1,1 +1,0 @@
-/opt/electriccloud/electriccommander/workspace/138_Deploy on Tomcat_Petclinic on Tomcat_Petclinic_20211215223949/spring-petclinic-2.4.5.jar

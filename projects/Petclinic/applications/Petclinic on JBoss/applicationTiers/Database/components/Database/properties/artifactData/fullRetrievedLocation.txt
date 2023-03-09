@@ -1,1 +1,0 @@
-/opt/electriccloud/electriccommander/workspace/574_Deploy on JBoss_Petclinic on JBoss_Petclinic_20230207155213/spring-petclinic-2.7.3.jar

@@ -1,1 +1,0 @@
-$[/projects/Petclinic/applications/Petclinic on JBoss/components/Database/ec_content_details/version]

@@ -1,2 +1,0 @@
-
-property 'ec_deploy'

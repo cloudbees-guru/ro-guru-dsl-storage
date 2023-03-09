@@ -1,4 +1,0 @@
-
-snapshot 'test', {
-  description = ''
-}

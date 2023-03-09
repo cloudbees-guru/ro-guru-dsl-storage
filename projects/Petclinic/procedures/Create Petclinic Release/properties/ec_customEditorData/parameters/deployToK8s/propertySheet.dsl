@@ -1,2 +1,0 @@
-
-property 'deployToK8s'

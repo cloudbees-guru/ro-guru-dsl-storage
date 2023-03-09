@@ -1,1 +1,0 @@
-docker pull $[registry]/$[dockerImage]:$[dockerImageVersion]

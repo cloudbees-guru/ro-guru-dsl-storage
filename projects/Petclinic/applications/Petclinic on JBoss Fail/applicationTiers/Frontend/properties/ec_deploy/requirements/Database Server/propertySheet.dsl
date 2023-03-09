@@ -1,2 +1,0 @@
-
-property 'Database Server'
