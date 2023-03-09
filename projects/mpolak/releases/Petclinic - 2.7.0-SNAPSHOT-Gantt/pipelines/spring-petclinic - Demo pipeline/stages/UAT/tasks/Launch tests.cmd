@@ -1,0 +1,1 @@
+echo "Launch automated tests..."

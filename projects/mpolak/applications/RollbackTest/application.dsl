@@ -1,0 +1,4 @@
+
+application 'RollbackTest', {
+  projectName = 'mpolak'
+}
