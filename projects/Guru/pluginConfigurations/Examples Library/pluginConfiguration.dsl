@@ -14,6 +14,6 @@ pluginConfiguration 'Examples Library', {
   addCredential 'credential', {
     passwordRecoveryAllowed = '1'
     projectName = 'Guru'
-    userName = 'abc'
+    userName = 'asd'
   }
 }

@@ -1,10 +1,11 @@
 
-pluginConfiguration 'ro.cloudbees.guru', {
+pluginConfiguration 'mockapi.io CBDEMO', {
   field = [
-    'authType': 'basic',
-    'baseUrl': 'https://ro.cloudbees.guru/rest/v1.0/',
+    'authType': 'anonymous',
+    'baseUrl': 'https://640f1cd1cde47f68db41df00.mockapi.io/cb_demo/',
+    'configContentType': 'text/plain',
+    'configPathUrl': 'https://640f1cd1cde47f68db41df00.mockapi.io/cb_demo',
     'configRequestType': 'GET',
-    'credential': 'credential',
     'debugLevel': '0',
     'ignoreSSLIssues': 'false',
     'protocolCustom': 'false',
@@ -14,10 +15,4 @@ pluginConfiguration 'ro.cloudbees.guru', {
   ]
   pluginKey = 'EC-Rest'
   projectName = 'Guru'
-
-  addCredential 'credential', {
-    passwordRecoveryAllowed = '1'
-    projectName = 'Guru'
-    userName = 'admin'
-  }
 }

@@ -74,14 +74,14 @@ return options'''
     type = 'checkbox'
   }
 
-  processStep 'Deploy Webapp', {
-    applicationTierName = 'Frontend'
+  processStep 'Deploy Database', {
+    applicationTierName = 'Database'
     dependencyJoinType = 'and'
     processStepType = 'process'
     projectName = 'Petclinic'
-    subcomponent = 'Webapp'
+    subcomponent = 'Database'
     subcomponentApplicationName = 'Petclinic via Ansible Tower'
-    subcomponentProcess = 'Deploy webapp via Ansible Tower'
+    subcomponentProcess = 'Deploy on MySQL via Ansible Tower'
 
     // Custom properties
 
@@ -92,14 +92,14 @@ return options'''
     }
   }
 
-  processStep 'Deploy Database', {
-    applicationTierName = 'Database'
+  processStep 'Deploy Webapp', {
+    applicationTierName = 'Frontend'
     dependencyJoinType = 'and'
     processStepType = 'process'
     projectName = 'Petclinic'
-    subcomponent = 'Database'
+    subcomponent = 'Webapp'
     subcomponentApplicationName = 'Petclinic via Ansible Tower'
-    subcomponentProcess = 'Deploy on MySQL via Ansible Tower'
+    subcomponentProcess = 'Deploy webapp via Ansible Tower'
 
     // Custom properties
 
