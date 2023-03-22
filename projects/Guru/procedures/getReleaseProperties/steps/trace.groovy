@@ -44,22 +44,22 @@ def printObj( basePath, propList ) {
     */
 }
 /***************************************************************************************/
-def printTasks( basePath, stageName, taskList, projectName, pipelineName ) {
+def printTasks( basePath, stageName, taskList, projName, relName, pipName ) {
     ElectricFlow ef = new ElectricFlow()
     try {
     for (tasks in taskList) {
         thisTask = basePath + "/tasks/" + tasks.taskName
 		def taskResult = ef.getTask(
-                projectName: projectName,
-                releaseName: pipelineName,
-                pipelineName: "pipeline_" + pipName,
+                projectName: projName,
+                releaseName: relName,
+                pipelineName: pipName,
                 taskName: tasks.taskName,
                 stageName: stageName)
         println "\n***** Task '" + tasks.taskName + "' Properties: *****"        
         printObj( thisTask, taskResult.task )
 		if (tasks.taskType == "GROUP") {
             groupTaskList = tasks.task
-            printTasks( thisTask, stageName, groupTaskList, projectName, pipelineName )
+            printTasks( thisTask, stageName, groupTaskList, projName, relName, pipName )
         } else {
           printProperties( thisTask )
           try {
@@ -75,7 +75,7 @@ def printTasks( basePath, stageName, taskList, projectName, pipelineName ) {
   }
 }
 /***************************************************************************************/
-def printStages( basePath, stageList, projectName, pipelineName ) {
+def printStages( basePath, stageList, projName, relName, pipName ) {
   ElectricFlow ef = new ElectricFlow()
   for (stages in stageList) {
        try {
@@ -83,56 +83,56 @@ def printStages( basePath, stageList, projectName, pipelineName ) {
           stage = ef.getProperty( propertyName: basePath + "/stages/" + stages.stageName ).property.value
           def stageResult = ef.getStage(
                           stageName:  stages.stageName,
-                          projectName: projectName,
-                          releaseName: pipelineName,
-                          pipelineName: "pipeline_" + pipName)
+                          projectName: projName,
+                          releaseName: relName,
+                          pipelineName: pipName)
 		  //println JsonOutput.prettyPrint(JsonOutput.toJson(stageResult))
           println "\n\n******** Stage '" + stages.stageName + "' Properties: ********"
 		  printObj( thisStage, stageResult.stage )
 		  def taskResult = ef.getTasks(
                   stageName:  stages.stageName,
-                  projectName: projectName,
-                  releaseName: pipelineName,
-                  pipelineName: "pipeline_" + pipName)
+                  projectName: projName,
+                  releaseName: relName,
+                  pipelineName: pipName)
           taskList = taskResult.task
           taskPath = basePath + "/stages/" + stages.stageName 
-          printTasks( taskPath, stages.stageName, taskList, projectName, pipelineName )
+          printTasks( taskPath, stages.stageName, taskList, projName, relName, pipName )
       } catch(Exception ex) {
           //println "Problem getting stage data " + ex
       }
   }
 }
 /***************************************************************************************/
-def printPipeline( projectName, pipelineName, basePath ) {
+def printPipeline( projName, relName, basePath ) {
   ElectricFlow ef = new ElectricFlow()
   def relResult = ef.getRelease (
-                  releaseName: pipelineName,
-                  projectName: projectName)
+                  releaseName: relName,
+                  projectName: projName)
   //print Properties from Pipeline level
   //printObj( basePath, relResult.pipeline )
   printObj( basePath, relResult.release )
   println "****** Root Properties: ******"
   printProperties( basePath )
   def stagesResult = ef.getStages(
-                  projectName: projectName,
-                  releaseName: pipName,
-                  pipelineName: "pipeline_" + pipName)
+                  projectName: projName,
+                  releaseName: relName,
+                  pipelineName: relResult.pipelineName)
   def stageList = stagesResult.stage
-  printStages( basePath, stageList, projectName, pipelineName )
+  printStages( basePath, stageList, projName, relName, relResult.pipelineName )
 }
 /***************************************************************************************
  ***                                M A I N
  ***************************************************************************************/
 ElectricFlow ef = new ElectricFlow()
 projName = ef.getProperty( propertyName: "/myReleaseRuntime/projectName" ).property.value
-pipName = ef.getProperty( propertyName: "/myReleaseRuntime/releaseName" ).property.value
+relName = ef.getProperty( propertyName: "/myReleaseRuntime/releaseName" ).property.value
 println "Project Name: " + projName
-println "Release Name: " + pipName
+println "Release Name: " + relName
 
 //Get Pipeline Object
 println "*****************************************************************"
 basePath="/myReleaseRuntime"
-printPipeline( projName, pipName, basePath )
+printPipeline( projName, relName, basePath )
 basePath="/myRelease"
-printPipeline( projName, pipName, basePath )
+printPipeline( projName, relName, basePath )
 println "*****************************************************************"

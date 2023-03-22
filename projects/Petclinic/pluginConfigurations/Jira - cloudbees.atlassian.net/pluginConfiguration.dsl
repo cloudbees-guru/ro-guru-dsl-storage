@@ -7,7 +7,7 @@ pluginConfiguration 'Jira - cloudbees.atlassian.net', {
   field = [
     'auth': 'basic',
     'credential': 'credential',
-    'debugLevel': '0',
+    'debugLevel': '2',
     'ignoreSSLErrors': '0',
     'url': 'https://cloudbees.atlassian.net/',
   ]

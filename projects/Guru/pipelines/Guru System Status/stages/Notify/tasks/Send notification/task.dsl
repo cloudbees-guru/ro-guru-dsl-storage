@@ -5,7 +5,7 @@ task 'Send notification', {
     'attachmentList': '',
     'bccList': '',
     'ccList': '',
-    'configName': 'pcherry@cloudbees.com',
+    'configName': 'sendgrid',
     'headerList': '',
     'html': '$[/myPipelineRuntime/notificationMessage]',
     'htmlFile': '',

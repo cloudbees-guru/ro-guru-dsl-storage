@@ -66,7 +66,9 @@ process 'Deploy webapp on Tomcat', {
     subproject = '/plugins/EC-Tomcat/project'
   }
 
-  processDependency 'Retrieve artifact', targetProcessStepName: 'Verify WAR file'
+  processDependency 'Retrieve artifact', targetProcessStepName: 'Verify WAR file', {
+    branchType = 'SUCCESS'
+  }
 
   processDependency 'Verify WAR file', targetProcessStepName: 'Tomcat deploy app'
 
