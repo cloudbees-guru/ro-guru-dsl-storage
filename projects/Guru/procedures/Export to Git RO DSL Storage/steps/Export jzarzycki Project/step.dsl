@@ -1,0 +1,20 @@
+
+step 'Export jzarzycki Project', {
+  errorHandling = 'abortProcedure'
+  projectName = 'Guru'
+  subprocedure = 'generateDslToDirectory'
+  subproject = '/plugins/EC-DslDeploy/project'
+  timeLimit = '0'
+  timeLimitUnits = 'seconds'
+  actualParameter 'directory', '/tmp/ro-guru-dsl-storage/'
+  actualParameter 'includeAcls', '1'
+  actualParameter 'includeAclsInDifferentFile', '1'
+  actualParameter 'includeAllChildren', '1'
+  actualParameter 'includeChildrenInSameFile', '0'
+  actualParameter 'objectName', 'jzarzycki'
+  actualParameter 'objectType', 'project'
+  actualParameter 'pool', 'local'
+  actualParameter 'suppressDefaults', '1'
+  actualParameter 'suppressNulls', '1'
+  actualParameter 'suppressParent', '0'
+}

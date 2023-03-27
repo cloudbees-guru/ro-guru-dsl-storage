@@ -103,22 +103,23 @@ def printStages( basePath, stageList, projName, relName, pipName ) {
   }
 }
 /***************************************************************************************/
-def printPipeline( projName, relName, basePath ) {
+def printPipeline( projName, relName, pipName, basePath ) {
   ElectricFlow ef = new ElectricFlow()
   def relResult = ef.getRelease (
                   releaseName: relName,
                   projectName: projName)
-  //print Properties from Pipeline level
-  //printObj( basePath, relResult.pipeline )
+  println "****** Release Properties: ******"
   printObj( basePath, relResult.release )
+  println "****** Pipeline Properties: ******"
+  printObj( basePath, relResult.pipeline )
   println "****** Root Properties: ******"
   printProperties( basePath )
   def stagesResult = ef.getStages(
                   projectName: projName,
                   releaseName: relName,
-                  pipelineName: relResult.pipelineName)
+                  pipelineName: pipName)
   def stageList = stagesResult.stage
-  printStages( basePath, stageList, projName, relName, relResult.pipelineName )
+  printStages( basePath, stageList, projName, relName, pipName )
 }
 /***************************************************************************************
  ***                                M A I N
@@ -126,13 +127,15 @@ def printPipeline( projName, relName, basePath ) {
 ElectricFlow ef = new ElectricFlow()
 projName = ef.getProperty( propertyName: "/myReleaseRuntime/projectName" ).property.value
 relName = ef.getProperty( propertyName: "/myReleaseRuntime/releaseName" ).property.value
+pipName = ef.getProperty( propertyName: "/myReleaseRuntime/pipelineName" ).property.value
 println "Project Name: " + projName
 println "Release Name: " + relName
+println "PipelineName: " + pipName
 
 //Get Pipeline Object
 println "*****************************************************************"
 basePath="/myReleaseRuntime"
-printPipeline( projName, relName, basePath )
+printPipeline( projName, relName, pipName, basePath )
 basePath="/myRelease"
-printPipeline( projName, relName, basePath )
+printPipeline( projName, relName, pipName, basePath )
 println "*****************************************************************"
